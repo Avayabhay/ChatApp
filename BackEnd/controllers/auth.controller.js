@@ -17,11 +17,14 @@ export const signup = async (req, res) => {
     const user = await User.findOne({ userName });
     console.log(fullName, userName, password, confirmPassword, gender);
     if (user) {
-      res.status(400).json({ error: "User arlready exists, please Sign In!" });
-      //redirect to the login page
-      // res.redirect("/pi/auth/login");
-    }
+      return res
+        .status(400)
+        .json({ error: "User arlready exists, please Sign In!" });
 
+      //redirect to the login page
+      // res.redirect("/api/auth/login");
+    }
+    console.log("Niche aaya!");
     // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPass = await bcrypt.hash(password, salt);
@@ -54,7 +57,7 @@ export const signup = async (req, res) => {
     }
   } catch (error) {
     console.log("Error in signing up the User:", error.message);
-    res.status(500).json({ error: "Internal Server error!" });
+    res.status(400).json({ error: "Internal Server error!" });
   }
 };
 
