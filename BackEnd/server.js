@@ -1,8 +1,15 @@
-const express = require("express");
+// const express = require("express");
+import express from "express";
+import dotenv from "dotenv";
+import authRoutes from "./routes/auth.routes.js";
 
 const app = express();
 
-//root route
-app.get("/", (req, res) => res.send("Welcom !!e"));
+const PORT = process.env.PORT || 5000;
 
-app.listen(5000, () => console.log("Server is runnig at 5000"));
+//root route
+app.get("/", (req, res) => res.send("Welcome!!"));
+
+app.use("/api/auth", authRoutes);
+
+app.listen(PORT, () => console.log(`Server is runnig at ${PORT}`));
