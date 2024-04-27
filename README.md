@@ -62,3 +62,10 @@ BackEnd
         - put a profile pic 
             https://avatar.iran.liara.run/public/girl?username=[value] - this url gives us radom profilepics depending on the username and girl/boy
         - save the user to database
+
+    Note : All the variable name should match the model
+
+    Ecrypting the Password:
+        - we use brcypt to hash the pass
+        - first create a salt using brcypt.genSalt(10);
+        - then hash the pass, brcypt(pass, salt) 
