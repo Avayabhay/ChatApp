@@ -69,3 +69,16 @@ BackEnd
         - we use brcypt to hash the pass
         - first create a salt using brcypt.genSalt(10);
         - then hash the pass, brcypt(pass, salt) 
+
+    
+# JWT
+    JWT - JSON Web Token
+    JWT is imported from the jsonwebtoken library in express js
+    We need to create a token and to do so, we need to call the jwt.sign(), which takes the following args:
+        1. payload - here we will pass the userID for our app
+        2. secret_key - it will be used to sign the token, its will be stored in the .env file
+        3. options: inlcudes various options such as expiresIn, etc.
+
+    once the  token is created, we set it as a cookie in the response using:
+        res.cookie("jwt",token, { maxAge : ..})
+        here the 1st arg is the name of the cookie ad second is the token and third is the options which inlcudes maxAge and other options
