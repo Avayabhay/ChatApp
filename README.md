@@ -82,3 +82,13 @@ BackEnd
     once the  token is created, we set it as a cookie in the response using:
         res.cookie("jwt",token, { maxAge : ..})
         here the 1st arg is the name of the cookie ad second is the token and third is the options which inlcudes maxAge and other options
+
+
+# Login
+
+    login flow :  We need to send the userName and password to the API using post methos. After receiving the userNmae and password, we call the findOne({userName}) to see if there is any such user present.
+    Note : we do User.findOne(), where User is the Model
+
+    if we get the user, we compare the password using brcypt.compare(), where 1st arg is the entered password and 2nd is the hashed password(received from the database).
+
+    if both matches, we generate and set the 'jwt'(using the earlier method) in the cookie and send back the response.

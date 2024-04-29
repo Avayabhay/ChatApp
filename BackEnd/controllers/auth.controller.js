@@ -63,9 +63,41 @@ export const signup = async (req, res) => {
   }
 };
 
-export const login = (req, res) => {
-  console.log("Login User");
-  res.send("Log In NOW!!");
+export const login = async (req, res) => {
+  //   console.log("Login User");
+  //   res.send("Log In NOW!!");
+  try {
+    const { userName, password } = req.body;
+    const user = await User.findOne({ userName });
+    console.log(userName, password);
+
+    //If no user exits
+    if (!user) {
+      return res
+        .status(400)
+        .json({ message: "No User with that username Exists" });
+    }
+    console.log(user);
+    //Check if the password is correct
+    const IsPassValid = await bcrypt.compare(password, user?.password);
+
+    console.log(user.password);
+    console.log(password);
+    if (!IsPassValid) {
+      return res.status(400).json({ error: "WRONG PASSWORD!!" });
+    }
+
+    generateTokenAndSetCookie(user._id, res);
+    res.status(200).json({
+      _id: user._id,
+      userName: user.userName,
+      fullName: user.fullName,
+      profilePic: user.profilePic,
+    });
+  } catch (error) {
+    console.log("Error in signing up the User:", error.message);
+    res.status(400).json({ error: "Internal Server error!" });
+  }
 };
 
 export const logout = (req, res) => {
