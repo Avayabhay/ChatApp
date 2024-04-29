@@ -92,3 +92,7 @@ BackEnd
     if we get the user, we compare the password using brcypt.compare(), where 1st arg is the entered password and 2nd is the hashed password(received from the database).
 
     if both matches, we generate and set the 'jwt'(using the earlier method) in the cookie and send back the response.
+
+# Logout
+
+    logout is simeple - in this API, we just clear the token by setting it to empty and maxAge to 0 followed by sending the response

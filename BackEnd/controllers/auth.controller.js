@@ -69,7 +69,6 @@ export const login = async (req, res) => {
   try {
     const { userName, password } = req.body;
     const user = await User.findOne({ userName });
-    console.log(userName, password);
 
     //If no user exits
     if (!user) {
@@ -81,8 +80,6 @@ export const login = async (req, res) => {
     //Check if the password is correct
     const IsPassValid = await bcrypt.compare(password, user?.password);
 
-    console.log(user.password);
-    console.log(password);
     if (!IsPassValid) {
       return res.status(400).json({ error: "WRONG PASSWORD!!" });
     }
@@ -101,6 +98,17 @@ export const login = async (req, res) => {
 };
 
 export const logout = (req, res) => {
-  console.log("Login User");
-  res.send("Logged Out!!");
+  //   console.log("Login User");
+  //   res.send("Logged Out!!");
+
+  //remove the jwt token
+  res.cookie("jwt", "", { maxAge: 0 });
+  console.log("Logging out...");
+  res.status(200).json({ message: "logged out successully!" });
+
+  try {
+  } catch (error) {
+    console.log("Error in loggin out the User:", error.message);
+    res.status(400).json({ error: "Internal Server error!" });
+  }
 };
