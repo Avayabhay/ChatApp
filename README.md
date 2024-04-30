@@ -120,3 +120,17 @@ BackEnd
     here, ObjectId is a special type that say that it is a refernce id from the 'User' Model
 
     Note: when using mongoose.Schema() to create a  schema, we can put {timestamp : true} as the 2nd arg, it will say that whenever the data is create, it will automatically created the timestamp of the data i.e, when the data was created and updated.
+
+
+# Messaging Routes
+
+    Send Message:
+        we create an API using post method, in which we will be getting id and message from the req.param & req.body.
+        Then the sender ID is also need. For this we will create a middleware called proctedRoute, which is authorize and put the user's id in the req.
+
+        In the protectedRoute,
+        we get the token from the req.cookie.
+        But we wont be able to get the req.cookie.jwt normally. For this, we use cookie-parse. So we import and use the cookie-parse middleware before any routes in the server.js file.
+        After getting the token, we verify it, using jwt.verify(token, secret_key).
+        the verify method returns the payload, in our case its the sender's user_id.
+        
