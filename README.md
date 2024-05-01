@@ -133,4 +133,22 @@ BackEnd
         But we wont be able to get the req.cookie.jwt normally. For this, we use cookie-parse. So we import and use the cookie-parse middleware before any routes in the server.js file.
         After getting the token, we verify it, using jwt.verify(token, secret_key).
         the verify method returns the payload, in our case its the sender's user_id.
-        
+
+        Now, get the user from the database using the user_id. add that  user to the req, so that the next middleware/route can access the user(sender)'s details.
+        So, If any API is having a protected route as middleware, it will get authenticated and also the authorized user's data will also get attched to the req.
+
+        Now, comming to the sendMessage endpoint. after the protectedRoute middleware is successfully gone through, we get the sender's details in the req.
+        get the Conversation from the database by finding the conversations where the participants list contains the sender as well as the receiver Ids.
+
+        If we dont get any conversations i.e, the users are talking for the first time, we create a new Conversation using:
+            await Conversation.create({ participants : [reciver_id, sender_id]})
+        if you see, the create function creates a collection in the databse and we populate the participants list with the sender as well as the receiver IDs.
+        Note: when we create a new conversation, the a default empty message [] is created.
+
+        After the converataion in craeted/get, we create a new message and push this newMessage's id in the conversation.messages array.
+        After this, both conversation and newMessage are saved in the database using .save() function.
+
+        We can optimize the save by using promise:
+            await Promise.add(conversation.save(), newMessage.save())
+            the above code will run in parallel, both the save() will run in parallel. but in the previous case, one will start after the other is finished in the backhround.
+

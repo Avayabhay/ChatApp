@@ -6,7 +6,7 @@ dotenv.config();
 
 const protectedRoute = async (req, res, next) => {
   try {
-    console.log(req);
+    // console.log(req);
     const token = req.cookies.jwt;
     if (!token) {
       return res.status(400).json({ error: "Invalid Token" });

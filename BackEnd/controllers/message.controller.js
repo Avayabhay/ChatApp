@@ -21,14 +21,17 @@ export const sendMessage = async (req, res) => {
     const user_id = req.user._id;
 
     console.log(message, receiver_id, user_id);
-    const conversation = Conversation.findOne({
+    let conversation = await Conversation.findOne({
       participants: { $all: [receiver_id, user_id] },
     });
+    console.log(conversation);
 
     if (!conversation) {
-      conversation = Conversation.create({
+      console.log("creating new Conversation...!");
+      conversation = await Conversation.create({
         participants: [receiver_id, user_id],
       });
+      console.log(conversation);
     }
 
     const newMessage = new Message({
@@ -38,9 +41,16 @@ export const sendMessage = async (req, res) => {
     });
 
     if (newMessage) {
-      console.log(newMessage._id);
-      conversation.message.push(newMessage._id);
+      //   console.log(newMessage._id);
+      conversation.messages.push(newMessage._id);
+      //   console.log(conversation);
     }
+
+    await conversation.save();
+    await newMessage.save();
+
+    //Optimizing the save()
+    await Promise.all([conversation.save(), newMessage.save()]);
 
     res.status(200).json({ message: newMessage });
   } catch (error) {
