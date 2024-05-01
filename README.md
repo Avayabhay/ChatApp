@@ -150,5 +150,18 @@ BackEnd
 
         We can optimize the save by using promise:
             await Promise.add(conversation.save(), newMessage.save())
-            the above code will run in parallel, both the save() will run in parallel. but in the previous case, one will start after the other is finished in the backhround.
+            the above code will run in parallel, both the save() will run in parallel. but in the previous case, one will start after the other is finished in the backhround.  
+
+    GET Messages
+
+        To get the messages, we get the sender and the receiver ID.
+        Then we get the conversation between them.
+        Note: await Conversation.findOne({
+            participants: { $all: [sender_id, receiver_id] },
+        })
+        note: how we selected all the conversation where the participants include sender_id and receiver_id
+
+        In Mongoose, the populate() method is used to automatically replace specified paths in a document with document(s) from other collection(s). It's a powerful feature that allows you to perform "joins" between collections in MongoDB.
+
+        After getting all the messages, we simply selected the message from them or do things according to our requirements.
 
