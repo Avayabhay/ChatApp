@@ -170,3 +170,6 @@ BackEnd
         then we get all the users from the database except for the current user using the following:
         await User.find({ _id: { $ne: logged_user } });
         Note: $ne ->  not equal
+
+
+Now we will focus on the Front-End
