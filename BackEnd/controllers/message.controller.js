@@ -58,3 +58,29 @@ export const sendMessage = async (req, res) => {
     res.status(400).json({ error: "Error while sending the message!!" });
   }
 };
+
+export const getMessage = async (req, res) => {
+  try {
+    const sender_id = req.user._id;
+    const receiver_id = req.params.id;
+    // console.log(sender_id, receiver_id);
+    let conversation = await Conversation.findOne({
+      participants: { $all: [sender_id, receiver_id] },
+    }).populate("messages");
+
+    if (!conversation) {
+      res.status(200).json([]);
+    }
+
+    const messages = conversation.messages;
+
+    const StringMessages = messages.map((m) => m.message);
+    console.log(StringMessages);
+    // console.log(conversation);
+    // console.log(messages);
+    res.status(200).json({ message: "Got the conversation successfully!!" });
+  } catch (error) {
+    console.log(error.message);
+    res.status(400).json({ error: "Error while getting the message!!" });
+  }
+};
