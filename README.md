@@ -165,3 +165,8 @@ BackEnd
 
         After getting all the messages, we simply selected the message from them or do things according to our requirements.
 
+    GET USERS
+        To get all the users in the database, we first use the protectedoute to authorize the user and then get its user id.
+        then we get all the users from the database except for the current user using the following:
+        await User.find({ _id: { $ne: logged_user } });
+        Note: $ne ->  not equal
