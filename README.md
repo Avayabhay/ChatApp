@@ -173,3 +173,26 @@ BackEnd
 
 
 Now we will focus on the Front-End
+# Front End
+    For front end, we will use React. For the CSS, we are going to use tailwindCSS & daisyUI
+
+    First we create all the Basic components such as Home, Login, SignUp
+
+    Now that all the pages are created, we start with the integration of the back-end with the front-end.
+    We first start with completing the sign-up functionality. 
+    
+    For this we install react-router-dom. To use the router throughout our app, we encapsulate the whole app by <BrowserRouter> given by the react-router-dom as:
+        <BrowserRouter>
+             <App />
+        </BrowserRouter>
+
+    After this, for routing to different url, we use <Routes> component which is wrapped around each <Route path='/' element= {<Home />} />
+    eg:
+    <Routes>
+        <Route path="/" element= {<Home />} />
+    </Routes>
+
+    We also replaces <a> with <Link> which is given by react-router-dom 
+
+
+    
