@@ -194,5 +194,20 @@ Now we will focus on the Front-End
 
     We also replaces <a> with <Link> which is given by react-router-dom 
 
+# Integration
+    Now we will start with the main logic for integration:
+    To get/set the input, we create a state as "inputs" and "setInputs" using useState, that will contain fullName, userName, password, confirmPassword, gender and the default value for this will be "".
+    After this, we have the input labels in the singUp component, where value of the input will come from the "inputs" state and also we will attach a onChange event listener to set the value of inputs as below:
+        value={inputs.fullName}
+              onChange={(e) =>
+                setInputs({ ...inputs, fullName: e.target.value })
+              }
+    
+    After doing the same for all the inputs, we create a function to handle the submisstion of the form named as "handleSubmit"
+    Note: we prevent the default behaviour on submit of the form as on submitting the form, it refreshes the page. and then we are logging the input to the console to check if everything is working fine. In future, we will remove the log and send the input to the backend.
+
+    Also we are setting all the inputs but same is not the case with gender, because we are made a Gender component. Now for its input, we create a funtion responsible for changing the gender in the  inputs and pass that function to the gender component as props so that we can set the state in the parent component(signUp) throught the Child(Gender) component
+
+
 
     
