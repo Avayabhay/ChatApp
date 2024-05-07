@@ -206,7 +206,17 @@ Now we will focus on the Front-End
     After doing the same for all the inputs, we create a function to handle the submisstion of the form named as "handleSubmit"
     Note: we prevent the default behaviour on submit of the form as on submitting the form, it refreshes the page. and then we are logging the input to the console to check if everything is working fine. In future, we will remove the log and send the input to the backend.
 
-    Also we are setting all the inputs but same is not the case with gender, because we are made a Gender component. Now for its input, we create a funtion responsible for changing the gender in the  inputs and pass that function to the gender component as props so that we can set the state in the parent component(signUp) throught the Child(Gender) component
+    Also we are setting all the inputs but same is not the case with gender, because we are made a Gender component. Now for its input, we create a funtion responsible for changing the gender in the  inputs and pass that function to the gender component as props so that we can set the state in the parent component(signUp) throught the Child(Gender) component.
+    function name : handleGenderChange
+    refer the code for changes
+
+    Now we will use the data entered to sign up or register our user. We can write the code there itseld but it will make our code very long and complex and also very hard to read. So we will create hooks to signup our user to modularize our code.
+    we create a hook as 'useSignup' that will return a signup function that takens in all the inputs validate it and throws errors accordingly and also signs up the user.
+
+    Also for showing all the errors, we use a library - hot-toast, that show all the errors at the top on the App. To install we need to npm i react-hot-toast.
+    Then we need to add the <Toast /> component to our App.js at the begining. Now to consume it, we just use - toast.error("error message").
+
+    Notice: we are handling the error both at the client side as well as the Server side. In the signUp method, we validate all the fields are filled and passwords & confirmedpas matches, etc. But its important to note that the validation at the server-side is more important, because the client-side code can be cheated easily but same is not possible for server-side validation. 
 
 
 
