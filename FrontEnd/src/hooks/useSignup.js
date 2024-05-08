@@ -1,6 +1,5 @@
 import { useState } from "react";
-import toast, { ErrorIcon } from "react-hot-toast";
-import { TbAspectRatio } from "react-icons/tb";
+import toast from "react-hot-toast";
 
 function useSignup() {
   const [loading, setLoading] = useState(false);
@@ -24,13 +23,27 @@ function useSignup() {
 
     setLoading(true);
     try {
-      // const res = await fetch()
+      const res = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          userName,
+          fullName,
+          password,
+          confirmPassword,
+          gender,
+        }),
+      });
+
+      const data = await res.json();
+      console.log(data);
     } catch (err) {
       toast.error(err.message);
     } finally {
       setLoading(false);
     }
   };
+  return { loading, signup };
 }
 
 export default useSignup;

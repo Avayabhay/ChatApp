@@ -216,7 +216,26 @@ Now we will focus on the Front-End
     Also for showing all the errors, we use a library - hot-toast, that show all the errors at the top on the App. To install we need to npm i react-hot-toast.
     Then we need to add the <Toast /> component to our App.js at the begining. Now to consume it, we just use - toast.error("error message").
 
-    Notice: we are handling the error both at the client side as well as the Server side. In the signUp method, we validate all the fields are filled and passwords & confirmedpas matches, etc. But its important to note that the validation at the server-side is more important, because the client-side code can be cheated easily but same is not possible for server-side validation. 
+    Notice: we are handling the error both at the client side as well as the Server side. In the signUp method, we validate all the fields are filled and passwords & confirmedpas matches, etc. But its important to note that the validation at the server-side is more important, because the client-side code can be cheated easily but same is not possible for server-side validation.
+
+    we pass all the inputs to our signUp function, which will post request to our backend.
+    For this, we fetch() at the api created by us for sign up with all the  inputs required.
+    we need to pass the method, the url and the inputs and also the headers.
+    note: the call should be awaited. also we need to stringyfy the json before sending. 
+    now we get the response and we do res.json() to convert it to json and log it to the console. 
+    Now if we try to run the App and sign up, we will get a CORS error, and this error is beacuse we are using two different domain for the frontend and back end. We will only get this error in Development and not in production beause, in production we will be using the same doamin for both backend and front end.
+    To solve this error, proxy field in the vite.config as :
+         proxy : {
+            "/api" :{
+                target : "http://localhost:5000"
+            } 
+
+    After this we need to restart both frontend as well as our backend and also need to change the link from :
+         await fetch("http://localhost:5000/api/suth/signup")
+                 to
+         await fetch("/api/suth/signup")
+
+     
 
 
 

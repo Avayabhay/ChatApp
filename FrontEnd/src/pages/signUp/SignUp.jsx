@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import GenderCheckbox from "./GenderCheckbox";
 import { useState } from "react";
+import useSignup from "../../hooks/useSignup";
 
 const SignUp = () => {
   const [inputs, setInputs] = useState({
@@ -11,10 +12,14 @@ const SignUp = () => {
     gender: "",
   });
 
-  //For Handling the Submission of form
+  const { loading, signup } = useSignup();
+  //For Handling the Submission of forms
   const handleSubmit = (e) => {
     // preventing the default behaviour on Submit - Doing so that the page does not refreshes on submit
     e.preventDefault();
+
+    //Sign Up the User
+    signup(inputs);
     console.log(inputs);
   };
 
