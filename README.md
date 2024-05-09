@@ -235,6 +235,15 @@ Now we will focus on the Front-End
                  to
          await fetch("/api/suth/signup")
 
+    Now we will create the Authcontex. After signing up the users, we want to store the user to the  local storage(jwt). with this we dont need to login the user everytime we go to the home page or some other page. The details will be fetched from the local storage and will be used to authorize. We will use context to access the userdata stored in the local.
+
+    after signing up, we store the user to local and also to the context.
+    For this, we create a file AuthContext which will use the createContext from react to create a Context.  Also we will create a AuthCOntextProvider that will provide the data(userdata from local that was stored earllier) to the Children. 
+    Then we wrap our App in the AuthContextProvider.
+    also we create a hook useAuthContext that will give us the AuthContext & the SetAuthContext. We use the useAuthContext to set the authUser
+
+    Now in our App.js, we get the authUser and for the signup route if its present we show the Home Page else we go to the Signup Page
+
      
 
 
