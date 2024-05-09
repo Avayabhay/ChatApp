@@ -245,8 +245,12 @@ Now we will focus on the Front-End
     Now in our App.js, we get the authUser and for the signup route if its present we show the Home Page else we go to the Signup Page.
     Same we will do for other pages as well.For login, If the user is present, to the home else to login. For Home -> if user goto home else to login
 
-     
 
+     
+# Log Out
+    For the logout functionality, we will create a hook "useLogout" which will have state loading as others. we will do a fetch call at backend for the "/logout" route. if we get proper response(if there is no error), we remove the userdata from the local storage and update the context value using useAuthContext.
+    Now in the LogoutButton Component, we get the logout function using the useLogout hook and on click of the logout button we add that function.
+    We can also add the loading state as other pages.
 
 
     
