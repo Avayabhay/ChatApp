@@ -242,7 +242,8 @@ Now we will focus on the Front-End
     Then we wrap our App in the AuthContextProvider.
     also we create a hook useAuthContext that will give us the AuthContext & the SetAuthContext. We use the useAuthContext to set the authUser
 
-    Now in our App.js, we get the authUser and for the signup route if its present we show the Home Page else we go to the Signup Page
+    Now in our App.js, we get the authUser and for the signup route if its present we show the Home Page else we go to the Signup Page.
+    Same we will do for other pages as well.For login, If the user is present, to the home else to login. For Home -> if user goto home else to login
 
      
 
