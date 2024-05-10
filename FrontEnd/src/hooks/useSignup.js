@@ -41,10 +41,6 @@ function useSignup() {
       const data = await res.json();
       console.log(data);
 
-      //store the user to the local
-      localStorage.setItem("chat-app-user", JSON.stringify(data));
-      //set the context
-      setAuthUser(data);
       //If there's any error while registering the user
       if (data.error) {
         console.log("Throwing error");
@@ -52,6 +48,12 @@ function useSignup() {
         console.log(errMsg);
         throw new Error(data.error);
       }
+
+      console.log("Should not execute");
+      //store the user to the local
+      localStorage.setItem("chat-app-user", JSON.stringify(data));
+      //set the context
+      setAuthUser(data);
     } catch (err) {
       toast.error(err.message);
     } finally {
