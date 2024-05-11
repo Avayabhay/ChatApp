@@ -253,4 +253,5 @@ Now we will focus on the Front-End
     We can also add the loading state as other pages.
 
 
-    
+# Log in
+    The Login is also going to be same as other. For this also we create a hook which will be responsible for loggin the user in. refer to the code changes for the same
