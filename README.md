@@ -255,3 +255,20 @@ Now we will focus on the Front-End
 
 # Log in
     The Login is also going to be same as other. For this also we create a hook which will be responsible for loggin the user in. refer to the code changes for the same
+
+# Sidbar - getting the conversations
+    For this we will be using 'zustand' which helps us to manage global state(same as context or redux). To install zustand do npm i zustand.
+    After that we create a folder like store to store all the global state variables.
+    we create a file call useConversation to store our global state like conversations and message. 
+
+    we use the create() given by zustand takes in set() as an args and we define states and its setStates as:
+        const useConversation = create((set) => ({
+            selectedConverstaion: null,
+            setSelctedConversation: (selectedConversation) =>
+                set({ selectedConversation }),
+            messages: [],
+            setMessage: (messages) => set({ messages }),
+        }));
+
+    Now we already have an api at the backend to get all the conversation(for sidebar) as '/api/users'.
+    We create a hooke called useGetConversations which will fetch the conversations using the above api and return those to the SideBar Component.
