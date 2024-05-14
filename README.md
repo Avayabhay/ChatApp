@@ -272,3 +272,6 @@ Now we will focus on the Front-End
 
     Now we already have an api at the backend to get all the conversation(for sidebar) as '/api/users'.
     We create a hooke called useGetConversations which will fetch the conversations using the above api and return those to the SideBar Component.
+
+    Now, we have all the conversations in the <Conversations /> using the useGetConversations hook. To show the conversations(users) in the sideBar, we need to modify the <Conversation />. We map over the conversations and pass the converastion to each of the <Conversation> and fill the details accordingly in that component.
+    Note : we also pass a boolean value of lastIndex to know which conversation is the last one and accordingly we hide the divider for the last conversation(plz refer to the code). 
