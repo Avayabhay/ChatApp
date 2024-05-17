@@ -275,3 +275,17 @@ Now we will focus on the Front-End
 
     Now, we have all the conversations in the <Conversations /> using the useGetConversations hook. To show the conversations(users) in the sideBar, we need to modify the <Conversation />. We map over the conversations and pass the converastion to each of the <Conversation> and fill the details accordingly in that component.
     Note : we also pass a boolean value of lastIndex to know which conversation is the last one and accordingly we hide the divider for the last conversation(plz refer to the code). 
+
+    Now if the user clicks on an user in the sidebar, that user should get highlighted. To do so, we will use "zustand". It is used to create a global store from which all the components can access the variables. It is like useContext or Redux but easier. To create a store, we create a folder called store or 'zustand'. Now create a file called useConversation.js, that will use the create method from zustand and create the global variables and its setter function. Now import and use the global variables where ever neccessary.
+    For the Conversation selection, we use the useConversation to get the selectedConversation and setSelectedConversation method. Now, if the current conversation components' id and the selectedConversations' id is same put isSelected to true. Based on the same boolean flag, set the background color of the conversation to back. also attach an onClick event handler to the covnersation where if any user click on the component, it set the selectedConversation to that user.
+
+
+# Message Window
+    We need to show chat of the selected user. To do so, we again use the zustand to get the selectedConversation and then update the chat window to show the selected user's name.
+
+# Messaging - sending msg
+    We create a new hook, useSendMessage that will do a post request to the backend api for sending message to the selected user.
+    We call the hook in messageInput Component that will take the input from the input box.
+
+# Messaging - Getting msgs
+    To get the message, we again create a hooke called useGetMessages(). this will have a useEffect which will have a function that will call the backend API - "api/message" to get all the message of the selected user. Also we will have a skeleton UI to show while the messages are laoding. plz refer the code.
