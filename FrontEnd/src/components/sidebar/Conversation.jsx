@@ -2,7 +2,7 @@ import useConversation from "../../zustand/useConversation";
 
 const Conversation = ({ conversation, emoji, lastIndex }) => {
   const { selectedConversation, setSelectedConversation } = useConversation();
-  console.log(selectedConversation, setSelectedConversation);
+  // console.log(selectedConversation, setSelectedConversation);
   const isSelected = selectedConversation?._id === conversation._id;
   return (
     <>
