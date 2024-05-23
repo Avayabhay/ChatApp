@@ -289,3 +289,9 @@ Now we will focus on the Front-End
 
 # Messaging - Getting msgs
     To get the message, we again create a hooke called useGetMessages(). this will have a useEffect which will have a function that will call the backend API - "api/message" to get all the message of the selected user. Also we will have a skeleton UI to show while the messages are laoding. plz refer the code.
+
+
+    Also we need to update the chat-text UI based on whether its sent or received. For sent the messages should appear on the right side of chat window else on the left. 
+    To do so, We will create a variable called chatReceived which will be true when the msg is received and false in case we are sending it.
+
+    To populate the chatReceived bool var, we need to get the authUser and selectedConversation from the useAuthContext() and useConversation() respectively. Also depending on the chatReceived flag we update the msg profile pic.
