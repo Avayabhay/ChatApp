@@ -79,7 +79,7 @@ export const getMessage = async (req, res) => {
     // console.log(StringMessages);
     // console.log(conversation);
     // console.log(messages);
-    res.status(200).json(StringMessages);
+    res.status(200).json(messages);
     // res.status(200).json({ message: "Got the conversation successfully!!" });
   } catch (error) {
     console.log(error.message);

@@ -23,8 +23,8 @@ export const useSendMessage = () => {
       if (data.error) {
         throw Error(data.error);
       }
-
-      setMessages([...messages, data]);
+      console.log(data);
+      await setMessages([...messages, data.message]);
     } catch (error) {
       toast.error(error.message);
     } finally {
