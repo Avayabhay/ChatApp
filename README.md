@@ -305,3 +305,21 @@ Now we will focus on the Front-End
 
 
 # Socket IO - Dynamic Messaging
+
+    For this we will use socket.io which helps us notify all the other users. 
+    We basically wrap our server around socket. How socket works is that when we send a requrest to server, the server does some work and then socket helps us to send responses to various users. 
+    To create a socket server : 
+                
+        const app = express();
+        const server = http.createServer(app);
+        const io = new Server(server, {
+        cors: {
+            origin: ["http://localhost:3000"],
+            methods: ["GET", "POST"],
+        },
+        });
+    now the io can be used to emit events. So, when a user login is, a connection event is emiited which contains a socket i.e, the information of the client that just got connected to.
+    Now when ever a user is connected, we store the userId and emit an event notifying all the users about the new connection. This way other user can come to know that a new user has just come online.
+
+    Same thing can be done in case of logout to let the other users know that the user has logged out and when can show that user offline.
+    

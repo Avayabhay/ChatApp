@@ -1,5 +1,6 @@
 import Conversation from "../models/conversation.model.js";
 import Message from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 export const sendMessage = async (req, res) => {
   //   console.log("Message Sent!");
@@ -20,7 +21,7 @@ export const sendMessage = async (req, res) => {
     const { id: receiver_id } = req.params;
     const user_id = req.user._id;
 
-    console.log(message, receiver_id, user_id);
+    // console.log(message, receiver_id, user_id);
     let conversation = await Conversation.findOne({
       participants: { $all: [receiver_id, user_id] },
     });
@@ -51,6 +52,13 @@ export const sendMessage = async (req, res) => {
 
     //Optimizing the save()
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    //Socket IO Functionality
+    const receiverSocketId = getReceiverSocketId(receiver_id);
+    if (receiverSocketId) {
+      //Emitting a newMessage Event only to the receiver with the new Message
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(200).json({ message: newMessage });
   } catch (error) {

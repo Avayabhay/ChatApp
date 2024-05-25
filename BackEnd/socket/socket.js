@@ -16,6 +16,11 @@ console.log("inside Socket");
 //Map to store UserID -> SocketI
 const userSocketMap = {};
 
+//Function to get the socketID from receiverID
+export const getReceiverSocketId = (receiverID) => {
+  return userSocketMap[receiverID];
+};
+
 // console.log(io);
 // io.on("connection", (s) => console.log(s));
 io.on("connection", (socket) => {
