@@ -12,13 +12,30 @@ const io = new Server(server, {
   },
 });
 console.log("inside Socket");
+
+//Map to store UserID -> SocketI
+const userSocketMap = {};
+
 // console.log(io);
 // io.on("connection", (s) => console.log(s));
 io.on("connection", (socket) => {
   console.log("User Connected : ", socket.id);
 
+  //Receiving the UserID
+  const userId = socket.handshake.query.userId;
+
+  if (userId != "undefined") {
+    userSocketMap[userId] = socket.id;
+  }
+
+  //After a new user a connected to the IO, we need to notify all the other
+  // connection. To do so, we use emit
+  io.emit("getOnlineUsers", Object.keys(userSocketMap)); // We are sending the user Maps
+
   socket.on("disconnect", () => {
     console.log("User Disconnected", socket.id);
+    delete userSocketMap[userId];
+    io.emit("getOnlineUsers", Object.keys(userSocketMap)); // We are sending the user Maps
   });
 });
 
