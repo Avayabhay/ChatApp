@@ -325,3 +325,5 @@ Now we will focus on the Front-End
 
 
     For Real-Time messaging, whenever we send a message, we will emit a newMessage event to the receiver. Also we will create a new hook that take the new message and add it to the messages in the zustand store. This is automatically update the chats
+
+    Now we will shake the new message. So if we get a new message we will add css to shake or vibrate the message. Refer to the CSS for this.
