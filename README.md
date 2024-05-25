@@ -322,4 +322,6 @@ Now we will focus on the Front-End
     Now when ever a user is connected, we store the userId and emit an event notifying all the users about the new connection. This way other user can come to know that a new user has just come online.
 
     Same thing can be done in case of logout to let the other users know that the user has logged out and when can show that user offline.
-    
+
+
+    For Real-Time messaging, whenever we send a message, we will emit a newMessage event to the receiver. Also we will create a new hook that take the new message and add it to the messages in the zustand store. This is automatically update the chats
