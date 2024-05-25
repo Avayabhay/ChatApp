@@ -6,6 +6,7 @@ const Message = ({ message }) => {
   const { authUser } = useAuthContext();
   const { selectedConversation } = useConversation();
   let msgReceived = true;
+  const shakeClass = message.shouldShake ? "shake" : "";
 
   if (authUser?._id !== message.sender_id) {
     msgReceived = true;
@@ -32,7 +33,7 @@ const Message = ({ message }) => {
         </div>
       </div>
       <div
-        className={`chat-bubble text-white pb-2 ${
+        className={`chat-bubble ${shakeClass} text-white pb-2 ${
           msgReceived ? "" : "bg-blue-500"
         }`}
       >

@@ -325,3 +325,8 @@ Now we will focus on the Front-End
 
 
     For Real-Time messaging, whenever we send a message, we will emit a newMessage event to the receiver. Also we will create a new hook that take the new message and add it to the messages in the zustand store. This is automatically update the chats
+
+    Now we will shake the new message. So if we get a new message we will add css to shake or vibrate the message. Refer to the CSS for this.
+
+    Now we add a notification sound when we get new messages. Refer the code.
+    Note: in usEffect we cleant he socket.off(newMessage) event, if we dont do so then we might run into problems like we might hear notification sound as many times as there are users
