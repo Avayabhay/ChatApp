@@ -20,7 +20,7 @@ const SignUp = () => {
 
     //Sign Up the User
     signup(inputs);
-    console.log(inputs);
+    // console.log(inputs);
   };
 
   // For changing the Gneder in the inputs.

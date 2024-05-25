@@ -23,7 +23,7 @@ const SearchInput = () => {
     const result = conversations.find((c) =>
       c.fullName.toLowerCase().includes(searchText.toLowerCase())
     );
-    console.log(result);
+    // console.log(result);
     if (!result) {
       toast.error("No such Users found");
     } else {

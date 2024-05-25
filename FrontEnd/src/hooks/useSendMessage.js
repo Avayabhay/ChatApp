@@ -8,7 +8,7 @@ export const useSendMessage = () => {
 
   const sendMessage = async (message) => {
     try {
-      console.log(JSON.stringify(message), selectedConversation);
+      // console.log(JSON.stringify(message), selectedConversation);
       setLoading(true);
       const res = await fetch(`api/message/send/${selectedConversation._id}`, {
         method: "POST",
@@ -19,11 +19,11 @@ export const useSendMessage = () => {
       });
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (data.error) {
         throw Error(data.error);
       }
-      console.log(data);
+      // console.log(data);
       await setMessages([...messages, data.message]);
     } catch (error) {
       toast.error(error.message);

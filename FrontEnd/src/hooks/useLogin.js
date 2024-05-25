@@ -1,6 +1,6 @@
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useAuthContext } from "../../context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 
 function useLogin() {
   const [loading, setLoading] = useState(false);
@@ -15,7 +15,7 @@ function useLogin() {
       setLoading(true);
 
       //Post request to the Backend
-      console.log("enter");
+      // console.log("enter");
       const res = await fetch("api/auth/login", {
         method: "POST",
         headers: {
@@ -25,7 +25,7 @@ function useLogin() {
       });
 
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       if (data.error) {
         throw new Error(data.error);
       }

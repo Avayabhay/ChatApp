@@ -12,7 +12,7 @@ const Messages = () => {
     }, 50);
   }, [messages]);
 
-  console.log(messages);
+  // console.log(messages);
   // const load = true;
   if (!loading && messages.length === 0) {
     return (
