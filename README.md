@@ -295,3 +295,13 @@ Now we will focus on the Front-End
     To do so, We will create a variable called chatReceived which will be true when the msg is received and false in case we are sending it.
 
     To populate the chatReceived bool var, we need to get the authUser and selectedConversation from the useAuthContext() and useConversation() respectively. Also depending on the chatReceived flag we update the msg profile pic.
+
+
+    There's a problem with out chat App, the chat screen doesnot show the current or the most recent chat. We need to show the recent chat. TO do so, we will use the useEffect in the Messages component. Here we will attach a reference to each Message  and will call the scrollToView(). Note : This will not work, we will have to out the scrollToView() in a setTimeOut(). (Still Dont know why. Please find a better way to do so)
+
+
+# Search Funcionality
+    Refer to the code changes for Search Functionality
+
+
+# Socket IO - Dynamic Messaging

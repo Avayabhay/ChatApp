@@ -63,7 +63,7 @@ export const getMessage = async (req, res) => {
   try {
     const sender_id = req.user._id;
     const receiver_id = req.params.id;
-    console.log(sender_id, receiver_id);
+    // console.log(sender_id, receiver_id);
     let conversation = await Conversation.findOne({
       participants: { $all: [sender_id, receiver_id] },
     }).populate("messages");
@@ -72,7 +72,7 @@ export const getMessage = async (req, res) => {
       return res.status(200).json([]);
     }
 
-    console.log(conversation);
+    // console.log(conversation);
     const messages = conversation.messages;
 
     const StringMessages = messages.map((m) => m.message);
