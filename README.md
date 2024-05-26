@@ -342,4 +342,8 @@ Now we will focus on the Front-End
 
     Once the build ready in the dist folder, all we need to do is push the changes to git and use Render to deploy it.
 
-    To Deploy the app, go to Render -> New -> Web Service -> Build and deplot from Git Repo ->  authorize git -> select the Repo -> provide the details as necessary -> Also Add the environment Vairables -> create Web Service
+    To Deploy the app, go to Render -> New -> Web Service -> Build and deplot from Git Repo ->  authorize git -> select the Repo -> provide the details as necessary -> Also Add the environment Vairables -> create Web Service.
+
+    After this the App should be deployed!
+    Note : Real-Time Live Status or Messaging wont be working now because we in the io that we created we were the localhost link to create it but now we need to use the deploye linke to create the io.
+    Refer the commit changes for the code. Once that is done it should support the real-time messaging as well.
