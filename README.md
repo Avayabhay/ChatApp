@@ -341,3 +341,5 @@ Now we will focus on the Front-End
     With the above we will be able to run our frontEnd from the server as well.
 
     Once the build ready in the dist folder, all we need to do is push the changes to git and use Render to deploy it.
+
+    To Deploy the app, go to Render -> New -> Web Service -> Build and deplot from Git Repo ->  authorize git -> select the Repo -> provide the details as necessary -> Also Add the environment Vairables -> create Web Service
