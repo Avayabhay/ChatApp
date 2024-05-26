@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon backEnd/server.js"
+    "server": "nodemon backEnd/server.js",
+    "start" : "node backEnd/server.js",
+    "build": "npm install && npm install --prefix FrontEnd && npm run build --prefix FrontEnd"
+
   },
   "type": "module",
   "keywords": [],

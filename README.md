@@ -330,3 +330,14 @@ Now we will focus on the Front-End
 
     Now we add a notification sound when we get new messages. Refer the code.
     Note: in usEffect we cleant he socket.off(newMessage) event, if we dont do so then we might run into problems like we might hear notification sound as many times as there are users
+
+# Deployement
+    
+    Root path of the App is required first. To get the root path, we do path.resolve(). Now at the last of our routes in server.js we need to use a middleware which will help to serve static pages or images of anything. we will use this middleware to serve our frontEnd as :  
+            app.use(express.static(path.join(__dirname, "/FrontEnd/dist")));
+        Here dist does not actually exist now, when we run the build command, the build will be put in dist folder.
+    Also we will add a wildCard route at the end that will serve the frontEnd Page whenver a route other than the previous is visited.
+
+    With the above we will be able to run our frontEnd from the server as well.
+
+    Once the build ready in the dist folder, all we need to do is push the changes to git and use Render to deploy it.
